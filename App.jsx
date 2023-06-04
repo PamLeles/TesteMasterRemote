@@ -1,31 +1,39 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 
-function App() {
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import Login from './src/Login/index.jsx';
+import Home from './src/Home/index.jsx';
+
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
   return (
-    <View>
-      <View>
-        <Text>Master Control</Text>
-        <Text>Remote DeskService Suite</Text>
-      </View>
-      <View>
-        <Text> Email (Seu e-mail será seu login no sistema)</Text>
-        <Text> ____________________________________________</Text>
-      </View>
-      <View>
-        <Text> Senha (Mínimo de 10 caracteres ou digitos)</Text>
-        <Text> ___________________________________________</Text>
-      </View>
-      <View>
-        <Text> Nome ou Razão social</Text>
-        <Text> ____________________ </Text>
-      </View>
-      <View>
-        <Text> Telefone para contato</Text>
-        <Text> _____________________ </Text>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Homepage" component={Home} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}>
+        <Login />
+      </View>
+    </NavigationContainer>
+  );
+};
 
 export default App;
